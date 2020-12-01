@@ -1,0 +1,12 @@
+
+main.exe: main.o methods.o
+	g++ main.o methods.o -o main.exe
+
+main.o: main.cpp
+	g++ -c main.cpp
+
+methods.o: methods.cpp header.h
+	g++ -c methods.cpp
+
+clean:
+	rm *.o main.exe
