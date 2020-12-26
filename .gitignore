@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# VSCode config
+*.vscode
+
+# User Directories
+recovered/
