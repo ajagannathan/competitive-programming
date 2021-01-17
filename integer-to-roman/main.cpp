@@ -12,8 +12,8 @@ std::string GetRoman(const int& int_number, std::map<int, std::string>& roman_ma
     if (int_number == 0)
         return "";
 
-    int power_10 = log10(int_number);
-    int val = (int)(int_number / pow(10, power_10)) * pow(10, power_10);
+    int power_10 = pow(10, (int)log10(int_number));
+    int val = (int)(int_number / power_10) * power_10;
 
 
     auto it = roman_map.lower_bound(val);
@@ -26,12 +26,12 @@ std::string GetRoman(const int& int_number, std::map<int, std::string>& roman_ma
         std::string roman;
         it--;
         int count = val / it->first;
-        int remainder = (val % it->first) / pow(10, power_10);
+        int remainder = (val % it->first) / power_10;
 
         for (size_t i = 0; i < count; i++)
             roman += roman_map[it->first];
         for (size_t i = 0; i < remainder; i++)
-            roman += roman_map[pow(10, power_10)];
+            roman += roman_map[power_10];
 
         return roman + GetRoman(int_number - val, roman_map);
     }
@@ -51,5 +51,5 @@ int main()
         {1,"I"},
     };
 
-    std::cout<<GetRoman(893, roman_map)<<"\n";
+    std::cout << GetRoman(893, roman_map) << "\n";
 }
